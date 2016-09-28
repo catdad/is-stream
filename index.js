@@ -5,6 +5,10 @@ var isStream = module.exports = function (stream) {
 };
 
 isStream.writable = function (stream) {
+	if (stream === process.stdout || stream === process.stderr) {
+		return true;
+	}
+
 	return isStream(stream) && stream.writable !== false && typeof stream._write === 'function' && typeof stream._writableState === 'object';
 };
 

@@ -27,6 +27,8 @@ test('isStream.writable()', t => {
 	t.true(m.writable(new Stream.Transform()));
 	t.true(m.writable(new Stream.PassThrough()));
 	t.true(m.writable(fs.createWriteStream(tempfile())));
+	t.true(m.writable(process.stdout));
+	t.true(m.writable(process.stderr));
 	t.false(m.writable(new Stream.Stream()));
 	t.false(m.writable(new Stream.Readable()));
 	t.false(m.writable(fs.createReadStream('test.js')));
@@ -39,6 +41,7 @@ test('isStream.readable()', t => {
 	t.true(m.readable(new Stream.Transform()));
 	t.true(m.readable(new Stream.PassThrough()));
 	t.true(m.readable(fs.createReadStream('test.js')));
+	t.true(m.readable(process.stdin));
 	t.false(m.readable(new Stream.Stream()));
 	t.false(m.readable(new Stream.Writable()));
 	t.false(m.readable(fs.createWriteStream(tempfile())));
